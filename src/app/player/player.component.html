@@ -1,0 +1,29 @@
+<!-- //Created At 22/05/2019 
+//By KHALFALLAH Bilel  -->
+<form [formGroup]="pForm" (submit)="submitPlayers()" *ngIf="!submitted"
+  class="input-group input-group-sm mb-3 was-validated">
+  <div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Player 1 :</span>
+    </div>
+    <input type="text" class="form-control" formControlName="nameP1" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm" required>
+  </div>
+
+  <div *ngIf="nameP1?.touched && nameP1?.errors && nameP1?.errors.required && nameP1.errors.namesCheck" class="alert alert-danger" role="alert">
+    The player 1 name is required
+  </div>
+
+  <div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Player 2 :</span>
+    </div>
+    <input type="text" class="form-control" formControlName="nameP2" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-sm" required>
+  </div>
+
+  <div *ngIf="nameP2?.touched && nameP2?.errors && nameP2?.errors.required && nameP2.errors.namesCheck" class="alert alert-danger" role="alert">
+    The player 2 name is required
+  </div>
+  <button [disabled]="!pForm.valid && pForm.validator" class="btn btn-secondary btn-lg active" role="button">Save Parameters</button>
+</form>

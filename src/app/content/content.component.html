@@ -1,0 +1,49 @@
+<!-- //Created At 22/05/2019 
+//By KHALFALLAH Bilel -->
+<div class="container">
+  <h1>
+    {{title}}
+  </h1>
+  <button type="button" class="btn btn-outline-primary active">Multi Players</button>
+  <button type="button" class="btn btn-outline">Vs Computer</button>
+  <!-- <span>//TO DO</span> -->
+  <div *ngIf="!started">
+    <h2> Set Parameters</h2>
+    <app-player></app-player>
+
+    <div class="input-group input-group-sm mb-3 was-validated">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Number of matches :</span>
+      </div>
+      <input type="number" class="form-control" [(ngModel)]="nbMatches" min="4" max="50"
+        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required />
+    </div>
+    <button (click)="startGame()" [disabled]="listPlayer.length != 2" class="btn btn-secondary btn-lg active"
+      role="button">Play Now</button>
+  </div>
+  <div *ngIf="started">
+    <h4>Who ever takes the last match wins the game!</h4>
+    <button mat-button class="btn btn-outline-info" (click)="removeMatches(1)" [disabled]="!player1">1</button>
+    <button mat-button class="btn btn-outline-info" (click)="removeMatches(2)" [disabled]="items.length<2">2</button>
+    <button mat-button class="btn btn-outline-info" (click)="removeMatches(3)" [disabled]="items.length < 3">3</button>
+    <ul>
+      <div *ngFor="let item of items" style="display:inline-block">
+        <img width="50" alt="allumette" src="../assets/all.png">
+      </div>
+    </ul>
+    <hr>
+    <div *ngIf="items.length > 0" class="h3"><strong>{{ this.currentPlayer.name }}</strong> to play : {{matchesStays}} matches left
+    </div>
+    <div *ngIf="items.length > 0">
+      <div *ngFor="let match of items; let i = index" (click)="removeMatches()"></div>
+    </div>
+    <hr>
+    <div *ngIf="items.length == 0">
+      <div class="h2">Résultat :</div>
+      {{ this.currentPlayer.name }} is the winner !
+      <hr>
+    </div>
+    <button (click)="restartGame()" class="btn btn-secondary btn-lg active" role="button">Start a new Game</button>
+    <button (click)="reset()" class="btn btn-secondary btn-lg active" role="button">Replay</button>
+  </div>
+</div>

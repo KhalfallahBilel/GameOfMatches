@@ -1,0 +1,10 @@
+.container{
+width: 80%;
+margin: auto;
+}
+button{
+    margin: 10px 15px;
+}
+button :visited{
+    background-color: #fff;
+}
